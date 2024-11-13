@@ -23,13 +23,11 @@ This is the `coupon-demo` API, a Spring Boot REST API for managing coupons. It p
 3. Build the project:
 
     ```bash
-   Copy code
    mvn clean install
 
 4. Run the application:
 
     ```bash
-    Copy code
     mvn spring-boot:run
 After the application starts, the API will be available at http://localhost:8080/api/v1.
 
