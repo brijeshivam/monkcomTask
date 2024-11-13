@@ -113,10 +113,13 @@ After the application starts, the API will be available at http://localhost:8080
     ```bash
     curl -X POST http://localhost:8080/api/v1/applicable-coupons \
     -H "Content-Type: application/json" \
-    -d '[
-    {"product_id": 1, "quantity": 2, "price": 50},
-    {"product_id": 2, "quantity": 3, "price": 30}
-    ]'
+    -d '{"cart": {
+    "items": [
+    {"product_id": 1, "quantity": 6, "price": 50}, // Product X
+    {"product_id": 2, "quantity": 3, "price": 30}, // Product Y
+    {"product_id": 3, "quantity": 2, "price": 25} // Product Z
+    ]
+    }}'
 7. Apply a Specific Coupon to a Cart
 
    Apply a coupon by ID to a shopping cart.
@@ -129,10 +132,13 @@ After the application starts, the API will be available at http://localhost:8080
     ```bash
     curl -X POST http://localhost:8080/api/v1/apply-coupon/1 \
     -H "Content-Type: application/json" \
-    -d '[
-    {"product_id": 1, "quantity": 6, "price": 50},
-    {"product_id": 2, "quantity": 3, "price": 30}
-    ]'
+    -d '{"cart": {
+    "items": [
+    {"product_id": 1, "quantity": 6, "price": 50}, // Product X
+    {"product_id": 2, "quantity": 3, "price": 30}, // Product Y
+    {"product_id": 3, "quantity": 2, "price": 25} // Product Z
+    ]
+    }}'
 ### Testing
 Use tools like curl or Postman to interact with the endpoints.
 The API responses will vary based on the data in your database.
@@ -144,7 +150,7 @@ MIT License.
 
 ### What is not implemented
 #### Apply coupon by its ID. (/apply-coupon/{id})
-
+#### Reason: Time constraints
 ##### Approach:
 1. Take id and object body from the request posted by user.
 2. Process this initially for semantic errors inside the Service class.
@@ -153,3 +159,10 @@ MIT License.
 5. If coupon type is product-wise then compare the cart with the product specified in coupon. If the exists then calculate applicable discount.
 6. If coupon type is bxgy then compare the cart with the product and quantity specified in coupon. If the condition meets calculate applicable discount. 
 7. Return the result to the user.
+
+### Limitations
+This is based on synchronous programming so not much suitable for scalable scenario.
+Instead we can use Quarkus and its reactive programming for scalability.
+
+### Assumptions
+coupon_id is assumed to be an auto generated int value.
