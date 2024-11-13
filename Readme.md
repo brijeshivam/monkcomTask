@@ -141,3 +141,15 @@ Make sure the database connection and configurations are correctly set up in app
 Use @PostConstruct for initialization, logging, or setup tasks.
 License
 MIT License.
+
+### What is not implemented
+#### Apply coupon by its ID. (/apply-coupon/{id})
+
+##### Approach:
+1. Take id and object body from the request posted by user.
+2. Process this initially for semantic errors inside the Service class.
+3. Get the specified coupon by its id from database.
+4. If coupon type is cart-wise then compare cart total with its threshold price and calculate the discount.
+5. If coupon type is product-wise then compare the cart with the product specified in coupon. If the exists then calculate applicable discount.
+6. If coupon type is bxgy then compare the cart with the product and quantity specified in coupon. If the condition meets calculate applicable discount. 
+7. Return the result to the user.
