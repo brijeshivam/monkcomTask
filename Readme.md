@@ -15,7 +15,7 @@ This is the `coupon-demo` API, a Spring Boot REST API for managing coupons. It p
 1. Clone the repository:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/brijeshivam/monkcomTask
    cd coupon-demo
 
 2. Set up your PostgreSQL database and update application.properties with your database credentials.
